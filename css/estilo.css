@@ -23,8 +23,6 @@ header#topo h1{
 	color: white;
 	font-size: 9em;
 	font-family: 'Sacramento', cursive;
-
-
 }
 
 div#btn a{
@@ -37,7 +35,7 @@ div#btn a{
 	background-color: #D9422D;
 	color: white;
 	font-size: 25px;
-	font-family: 'Nunito Sans', sans-serif; /*Tajawal, sans-serif*/
+	font-family: 'Nunito Sans', sans-serif;
 }
 
 div#btn a:hover{
@@ -75,14 +73,14 @@ div#btn a:hover{
 }
 
 .cd-timeline__container::before {
-  /* this is the vertical line */
+  /*Linha vertical*/
   content: '';
   position: absolute;
   top: 0;
   left: 18px;
   height: 100%;
   width: 4px;
-  background-color: #9BB5C2;/*Cor original #d7e4ed*/
+  background-color: #9BB5C2;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -367,7 +365,7 @@ div#btn a:hover{
 
 
 
-/*Conteúdo logo abaixo da linha do tempo*/
+/*Bloco de texto logo abaixo da linha do tempo*/
 section#conteudo{
 	background-color: #D64D2C;
 	color: white;
@@ -380,7 +378,7 @@ section#conteudo p{
   	color: white;
   	font-family: 'Nunito Sans', sans-serif;
   	text-align: justify;
-  	width: 60%;
+  	width: 70%;
   	margin-top: 2%;
   	margin-right: auto;
   	margin-left: auto;
@@ -388,20 +386,60 @@ section#conteudo p{
 
 
 
-/*Final da página com botão*/
-footer#final{
+/*Segundo trecho de texto após a linha do tempo*/
+section#segundo-conteudo{
 	color: #D64D2C;
 	padding: 100px;
 	height: 400px;
 	text-align: center;
 }
 
-footer#final p{
+section#segundo-conteudo p{
 	font-size: 1.8rem;
-  	font-family: 'Nunito Sans', sans-serif;
-  	text-align: justify;
-  	width: 60%;
-  	margin-top: 1%;
-  	margin-right: auto;
-  	margin-left: auto;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: justify;
+  width: 70%;
+	margin-top: 3%;
+ 	margin-right: auto;
+ 	margin-left: auto;
+}
+
+/*Seção com link para os jogos*/
+section#jogos{
+  background-color: #D64D2C;
+  color: white;
+  padding: 100px;
+  height: 700px;
+  text-align: center;
+}
+
+section#jogos>div{
+  display: inline-block;
+  background-color: white;
+  color: #D64D2C;
+  border-radius: 10px;
+  width: 35%;
+  height: 100%;
+  font-family: 'Sacramento', cursive;
+  font-size: 2rem;
+}
+
+div#forca{
+  margin-right: 20px;
+  background: url('../img/forca.png') no-repeat 50% 80px;
+  background-size: 300px;
+}
+div#forca>div>a{
+  display: inline-block;
+  margin-top: 55%;
+}
+
+div#velha{
+  margin-left: 20px;
+  background: url('../img/jogo-velha.png') no-repeat 50% 80px;
+  background-size: 300px;
+}
+div#velha>div>a{
+  display: inline-block;
+  margin-top: 55%;
 }
