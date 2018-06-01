@@ -148,34 +148,28 @@ div#btn a:hover{
 @-webkit-keyframes cd-bounce-1 {
   0% {
     opacity: 0;
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
   }
   60% {
     opacity: 1;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
+    transform: scale(1.2);
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
 @keyframes cd-bounce-1 {
   0% {
     opacity: 0;
-    -webkit-transform: scale(0.5);
-            transform: scale(0.5);
+    transform: scale(0.5);
   }
   60% {
     opacity: 1;
-    -webkit-transform: scale(1.2);
-            transform: scale(1.2);
+    transform: scale(1.2);
   }
   100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
+    transform: scale(1);
   }
 }
 
@@ -195,7 +189,7 @@ div#btn a:hover{
 }
 
 .cd-timeline__content::before {
-  /* triangle next to content block */
+  /* triangulo na ponta de cada bloco */
   content: '';
   position: absolute;
   top: 16px;
@@ -203,7 +197,6 @@ div#btn a:hover{
   height: 0;
   width: 0;
   border: 7px solid transparent;
-  border-right: 7px solid black;
 }
 
 .cd-timeline__content p,
@@ -244,10 +237,8 @@ div#btn a:hover{
     margin-left: 0;
     padding: 1.6em;
     width: 45%;
-    /* Force Hardware Acceleration */
-    -webkit-transform: translateZ(0);
-            transform: translateZ(0);
   }
+
   .cd-timeline__content::before {
     top: 14px;
     left: 100%;
@@ -282,84 +273,70 @@ div#btn a:hover{
   }
   .cd-timeline__content.cd-timeline__content--bounce-in {
     visibility: visible;
-    -webkit-animation: cd-bounce-2 0.6s;
-            animation: cd-bounce-2 0.6s;
+    animation: cd-bounce-2 0.6s;
   }
 }
 
 @media only screen and (min-width: 1170px) {
   /* inverse bounce effect on even content blocks */
   .cd-timeline__block:nth-child(even) .cd-timeline__content.cd-timeline__content--bounce-in {
-    -webkit-animation: cd-bounce-2-inverse 0.6s;
-            animation: cd-bounce-2-inverse 0.6s;
-  }
-}
-
-@-webkit-keyframes cd-bounce-2 {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateX(-100px);
-            transform: translateX(-100px);
-  }
-  60% {
-    opacity: 1;
-    -webkit-transform: translateX(20px);
-            transform: translateX(20px);
-  }
-  100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    animation: cd-bounce-2-inverse 0.6s;
   }
 }
 
 @keyframes cd-bounce-2 {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(-100px);
-            transform: translateX(-100px);
+    transform: translateX(-100px);
   }
   60% {
     opacity: 1;
-    -webkit-transform: translateX(20px);
-            transform: translateX(20px);
+    transform: translateX(20px);
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
 }
 
-@-webkit-keyframes cd-bounce-2-inverse {
+@keyframes cd-bounce-2 {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    transform: translateX(-100px);
   }
   60% {
     opacity: 1;
-    -webkit-transform: translateX(-20px);
-            transform: translateX(-20px);
+    transform: translateX(20px);
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
   }
 }
 
 @keyframes cd-bounce-2-inverse {
   0% {
     opacity: 0;
-    -webkit-transform: translateX(100px);
-            transform: translateX(100px);
+    transform: translateX(100px);
   }
   60% {
     opacity: 1;
-    -webkit-transform: translateX(-20px);
-            transform: translateX(-20px);
+    transform: translateX(-20px);
   }
   100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes cd-bounce-2-inverse {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
@@ -384,8 +361,6 @@ section#conteudo p{
   	margin-left: auto;
 }
 
-
-
 /*Segundo trecho de texto após a linha do tempo*/
 section#segundo-conteudo{
 	color: #D64D2C;
@@ -404,7 +379,7 @@ section#segundo-conteudo p{
  	margin-left: auto;
 }
 
-/*Seção com link para os jogos*/
+/*Seção com botão de link para os jogos*/
 section#jogos{
   background-color: #D64D2C;
   color: white;
@@ -421,25 +396,30 @@ section#jogos>div{
   width: 35%;
   height: 100%;
   font-family: 'Sacramento', cursive;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
+/*retângulo do jogo da forca*/
 div#forca{
   margin-right: 20px;
   background: url('../img/forca.png') no-repeat 50% 80px;
   background-size: 300px;
 }
-div#forca>div>a{
-  display: inline-block;
-  margin-top: 55%;
-}
 
+/*retângulo do jogo da velha*/
 div#velha{
   margin-left: 20px;
   background: url('../img/jogo-velha.png') no-repeat 50% 80px;
   background-size: 300px;
 }
-div#velha>div>a{
-  display: inline-block;
+
+/*Botão dos jogos*/
+section#jogos a{
   margin-top: 55%;
+}
+
+@media(max-width: 1500px){
+  section#jogos a{
+    margin-top: 75%;
+  }
 }
