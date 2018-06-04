@@ -1,184 +1,136 @@
-// Estado da Aplicação
-// Aqui vão todas as variáveis que serão modificadas durante o andamento do jogo
+var rodada = 1;
+var matriz_jogo = Array(3);
 
-const tabuleiro = [
-  [ ' ', ' ', ' ' ],
-  [ ' ', ' ', ' ' ],
-  [ ' ', ' ', ' ' ],
-];
-let ultimaJogada;
+matriz_jogo['a'] = Array(3);
+matriz_jogo['b'] = Array(3);
+matriz_jogo['c'] = Array(3);
 
-// Lógica da Aplicação
-// Aqui vão todas as rotinas que modificam o estado da aplicação SEM efeitos colaterais (mudanças visuais, por exemplo)
+matriz_jogo['a'][1] = 0;
+matriz_jogo['a'][2] = 0;
+matriz_jogo['a'][3] = 0;
 
-const limparTabuleiro = () => {
-  tabuleiro[0] = [ ' ', ' ', ' ' ];
-  tabuleiro[1] = [ ' ', ' ', ' ' ];
-  tabuleiro[2] = [ ' ', ' ', ' ' ];
-};
+matriz_jogo['b'][1] = 0;
+matriz_jogo['b'][2] = 0;
+matriz_jogo['b'][3] = 0;
 
-const marcar = (i, j, jogada) => {
-  tabuleiro[i][j] = jogada;
-  ultimaJogada = jogada;
-};
+matriz_jogo['c'][1] = 0;
+matriz_jogo['c'][2] = 0;
+matriz_jogo['c'][3] = 0;
 
-const calcularVencedor = () => {
-  // Linha cheia
-  for (let i = 0; i <= 2; ++i) {
-    if (tabuleiro[i][0] === tabuleiro[i][1] && tabuleiro[i][1] === tabuleiro[i][2] && tabuleiro[i][0] !== ' ') {
-      return tabuleiro[i][0];
-    }
-  }
+$(document).ready( function(){
 
-  // Coluna cheia
-  for (let j = 0; j <= 2; ++j) {
-    if (tabuleiro[0][j] === tabuleiro[1][j] && tabuleiro[1][j] === tabuleiro[2][j] && tabuleiro[0][j] !== ' ') {
-      return tabuleiro[0][j];
-    }
-  }
 
-  // Diagonal principal cheia
-  if (tabuleiro[0][0] === tabuleiro[1][1] && tabuleiro[1][1] === tabuleiro[2][2] && tabuleiro[0][0] !== ' ') {
-    return tabuleiro[0][0];
-  }
+	$('#btn_iniciar_jogo').click( function(){
+		// Valida a digitação do apelido dos jogadores
+		//.val() vai ver o que está escrito no campo e vai pegar o valor
+		if($('#entrada_apelido_jogador_1').val() == ''){
+			alert("Apelido do jogador 1 não foi preenchido");
+			return false;
+		}
 
-  // Diagonal inversa cheia
-  if (tabuleiro[0][2] === tabuleiro[1][1] && tabuleiro[1][1] === tabuleiro[2][0] && tabuleiro[0][2] !== ' ') {
-    return tabuleiro[0][2];
-  }
+		if($('#entrada_apelido_jogador_2').val() == ''){
+			alert("Apelido do jogador 2	não foi preenchido");
+			return false;
+		}
+		
+		// Exibir os apelidos nas imagens lado a lado com o jogo da velha
+		$('#nome_jogador_1').html($('#entrada_apelido_jogador_1').val());
+		$('#nome_jogador_2').html($('#entrada_apelido_jogador_2').val());
 
-  // Empate
-  let preenchidos = 0;
 
-  for (let i = 0; i <= 2; ++i) {
-    for (let j = 0; j <= 2; ++j) {
-      if (tabuleiro[i][j] !== ' ') {
-        ++preenchidos;
-      }
-    }
-  }
+		// Controla visualização das divs
+		$('#pagina_inicial').hide();
+		$('#palco_jogo').show();
 
-  if (preenchidos === 9) {
-    return 'empate';
-  }
+	});
 
-  return 'nenhum';
-};
+	$('.jogada').click( function(){
+		var id_campo_clicado = this.id; //this faz referencia ao elemento do contexo do click
+		$('#'+id_campo_clicado).off();
+		jogada(id_campo_clicado);
+	});
 
-// Apresentação da Aplicação
-// Aqui vai tudo responsável por exibir a aplicação para o usuário, bem como reagir às ações dele
 
-window.onload = function () {
-  const jogo = document.getElementById('jogo');
+	// Função capaz de entender qual foi a posição clicada e atribuir uma imagem
+	function jogada(id){
+		var icone = '';
+		var ponto = 0;
 
-  const gatilhos = [
-    document.getElementById('gatilho-0-0'),
-    document.getElementById('gatilho-0-1'),
-    document.getElementById('gatilho-0-2'),
-    document.getElementById('gatilho-1-0'),
-    document.getElementById('gatilho-1-1'),
-    document.getElementById('gatilho-1-2'),
-    document.getElementById('gatilho-2-0'),
-    document.getElementById('gatilho-2-1'),
-    document.getElementById('gatilho-2-2')
-  ];
+		if((rodada % 2) == 1){
+			icone = 'url("img/marcador_1.png")';
+			ponto = -1;
+		}
+		else{
+			icone = 'url("img/marcador_2.png")';
+			ponto = 1;
+		}
 
-  const criarHandlerParaMarcar = (i, j) => function () {
-    if (this.disabled) {
-      return;
-    }
+		rodada++;
 
-    this.disabled = true;
-    marcar(i, j, ultimaJogada === 'x' ? 'o' : 'x');
-    exibirTabuleiro();
-    atualizarTabuleiro();
-  };
+		$('#'+id).css('background-image', icone);
 
-  gatilhos[0].addEventListener('click', criarHandlerParaMarcar(0, 0), false);
-  gatilhos[1].addEventListener('click', criarHandlerParaMarcar(0, 1), false);
-  gatilhos[2].addEventListener('click', criarHandlerParaMarcar(0, 2), false);
-  gatilhos[3].addEventListener('click', criarHandlerParaMarcar(1, 0), false);
-  gatilhos[4].addEventListener('click', criarHandlerParaMarcar(1, 1), false);
-  gatilhos[5].addEventListener('click', criarHandlerParaMarcar(1, 2), false);
-  gatilhos[6].addEventListener('click', criarHandlerParaMarcar(2, 0), false);
-  gatilhos[7].addEventListener('click', criarHandlerParaMarcar(2, 1), false);
-  gatilhos[8].addEventListener('click', criarHandlerParaMarcar(2, 2), false);
+		var linha_coluna = id.split('-');
 
-  const mudarEstadoDosGatilhos = estaoHabilitados => {
-    gatilhos.forEach(gatilho => {
-      gatilho.disabled = !estaoHabilitados;
-    });
-  };
+		matriz_jogo[linha_coluna[0]][linha_coluna[1]] = ponto;
 
-  const atualizarTabuleiro = () => {
-    const vencedor = calcularVencedor();
-    if (vencedor !== 'nenhum') {
-      mudarEstadoDosGatilhos(false);
-    }
-  };
+		verifica_combinacao();
+	}
 
-  // Botão de novo jogo
-  const botaoNovoJogo = document.getElementById('btn-novo-jogo');
+	function verifica_combinacao(){
+		//Verifica na horizontal
+		var pontos = 0;
+		for(var i = 1; i <= 3; i++){
+			pontos = pontos + matriz_jogo['a'][i];
+		}
+		ganhador(pontos);
 
-  botaoNovoJogo.addEventListener('click', function () {
-    limparTabuleiro();
-    exibirTabuleiro();
-    mudarEstadoDosGatilhos(true);
+		pontos = 0;
+		for(var i = 1; i <= 3; i++){
+			pontos = pontos + matriz_jogo['b'][i];
+		}
+		ganhador(pontos);
 
-    document.getElementById('jogo').classList.remove('empate');
-    document.getElementById('jogo').classList.remove('vencedor');
-  }, false);
+		pontos = 0;
+		for(var i = 1; i <= 3; i++){
+			pontos = pontos + matriz_jogo['c'][i];
+		}
+		ganhador(pontos);
 
-  // Tela do tabuleiro
-  const telaTabuleiro = document.getElementById('svg-tabuleiro');
 
-  const exibirTabuleiro = () => {
-    for (let i = 0; i < tabuleiro.length; i++) {
-      for (let j = 0; j < tabuleiro[i].length; j++) {
-        const x = [16, 49, 82][j];
-        const y = [16, 49, 82][i];
+		// Verifica na vertical
+		for(var l = 1; l <= 3; l++){
+			pontos = 0;
+			pontos += matriz_jogo['a'][l];
+			pontos += matriz_jogo['b'][l];
+			pontos += matriz_jogo['c'][l];
 
-        const marcacaoAtual = document.querySelector("#marcacao-" + i + "-" + j);
+			ganhador(pontos);
+		}
 
-        if (tabuleiro[i][j] === "x" && !marcacaoAtual) {
-          const marcacao = document.createElementNS("http://www.w3.org/2000/svg","use");
-          marcacao.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#x");
-          marcacao.setAttribute("x", x);
-          marcacao.setAttribute("y", y);
-          marcacao.setAttribute("id", "marcacao-" + i + "-" + j);
 
-          telaTabuleiro.appendChild(marcacao);
-        } else if (tabuleiro[i][j] === "o" && !marcacaoAtual) {
-          const marcacao = document.createElementNS("http://www.w3.org/2000/svg","use");
-          marcacao.setAttributeNS("http://www.w3.org/1999/xlink", "href", "#o");
-          marcacao.setAttribute("x", x);
-          marcacao.setAttribute("y", y);
-          marcacao.setAttribute("id", "marcacao-" + i + "-" + j);
+		// Verifica na diagonal
+		pontos = 0;
+		pontos = matriz_jogo['a'][1] + matriz_jogo['b'][2] + matriz_jogo['c'][3];
+		ganhador(pontos);
 
-          telaTabuleiro.appendChild(marcacao);
-        } else if (tabuleiro[i][j] === " " && marcacaoAtual) {
-          telaTabuleiro.removeChild(marcacaoAtual);
-        }
-      }
-    }
+		pontos = 0;
+		pontos = matriz_jogo['a'][3] + matriz_jogo['b'][2] + matriz_jogo['c'][1];
+		ganhador(pontos);
+	}
 
-    // Verifica vencedor ou empate
-    const vencedor = calcularVencedor();
+	function ganhador(pontos){
+		if(pontos == -3){
+			var jogada_1 = $('#entrada_apelido_jogador_1').val();
+			alert(jogada_1 + " é o vencedor");
+			$('.jogada').off();
+		}
+		else if(pontos == 3){
+			var jogada_2 = $('#entrada_apelido_jogador_2').val();
+			alert(jogada_2 + " é o vencedor");
+			$('.jogada').off();
+		}
+	}
 
-    if (vencedor !== 'nenhum') {
-      if (vencedor === 'empate') {
-        jogo.classList.add("empate");
-      }
-      else{
-        if (vencedor === 'x') {
-          jogo.classList.add("vencedor");
-        }
-        else{
-          jogo.classList.add("vencedor");
-        }
-      }
-    }
-  }
 
-  exibirTabuleiro();
-}
+
+});
