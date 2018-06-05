@@ -1,5 +1,6 @@
 var rodada = 1;
 var matriz_jogo = Array(3);
+var deu_velha = true;
 
 matriz_jogo['a'] = Array(3);
 matriz_jogo['b'] = Array(3);
@@ -116,6 +117,18 @@ $(document).ready( function(){
 		pontos = 0;
 		pontos = matriz_jogo['a'][3] + matriz_jogo['b'][2] + matriz_jogo['c'][1];
 		ganhador(pontos);
+
+
+		if(rodada > 9 && deu_velha == true) {
+        	alert('Xiiiii, deu velha');
+        	$('.jogada').off();
+        	reinicia_pagina();
+    	}
+	}
+
+	// Faz a página reiniciar
+	function reinicia_pagina(){
+		location.reload(true);
 	}
 
 	function ganhador(pontos){
@@ -123,14 +136,16 @@ $(document).ready( function(){
 			var jogada_1 = $('#entrada_apelido_jogador_1').val();
 			alert(jogada_1 + " é o vencedor");
 			$('.jogada').off();
+			deu_velha = false;
+			reinicia_pagina();
 		}
 		else if(pontos == 3){
 			var jogada_2 = $('#entrada_apelido_jogador_2').val();
 			alert(jogada_2 + " é o vencedor");
 			$('.jogada').off();
+			deu_velha = false;
+			reinicia_pagina();
 		}
 	}
-
-
 
 });

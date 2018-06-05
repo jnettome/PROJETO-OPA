@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito+Sans');
+
+*{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+body{
+	font-family: 'Nunito Sans', sans-serif;
+}
+
+
+/*Configuração da tela para Digitar nome e dar play*/
+div#pagina_inicial table{
+	width: 70%;
+	margin-top: 15%;
+}
+
+div#pagina_inicial table td{
+	text-align: center;
+}
+
+td.titulo{
+	font-size: 30px;
+}
+
+input{
+	text-align: center;
+	padding: 10px;
+	font-size: 1rem;
+}
+
+/*Configuração do Jogo*/
+div#palco_jogo{
+	display: none; 
+	margin-top: 100px; 
+	text-align: center;
+}
+
+div#palco_jogo td div.jogada{
+	width: 150px; 
+	height: 150px;
+}

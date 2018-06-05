@@ -347,26 +347,25 @@ section#conteudo{
 	background-color: #D64D2C;
 	color: white;
 	padding: 100px;
-	height: 400px;
+	height: 350px;
 }
 
 section#conteudo p{
 	font-size: 1.8rem;
-  	color: white;
-  	font-family: 'Nunito Sans', sans-serif;
-  	text-align: justify;
-  	width: 70%;
-  	margin-top: 2%;
-  	margin-right: auto;
-  	margin-left: auto;
+	color: white;
+ 	font-family: 'Nunito Sans', sans-serif;
+ 	text-align: justify;
+ 	width: 70%;
+ 	margin-right: auto;
+ 	margin-left: auto;
 }
 
 /*Segundo trecho de texto após a linha do tempo*/
 section#segundo-conteudo{
 	color: #D64D2C;
 	padding: 100px;
-	height: 400px;
-	text-align: center;
+	height: 350px;
+	text-align: justify;
 }
 
 section#segundo-conteudo p{
@@ -374,7 +373,7 @@ section#segundo-conteudo p{
   font-family: 'Nunito Sans', sans-serif;
   text-align: justify;
   width: 70%;
-	margin-top: 3%;
+  margin-top: 1%;
  	margin-right: auto;
  	margin-left: auto;
 }
