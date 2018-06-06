@@ -2,25 +2,29 @@ var rodada = 1;
 var matriz_jogo = Array(3);
 var deu_velha = true;
 
-matriz_jogo['a'] = Array(3);
-matriz_jogo['b'] = Array(3);
-matriz_jogo['c'] = Array(3);
+function iniciaJogo() {
+	rodada = 1;
+	matriz_jogo = Array(3);
+	deu_velha = true;
+	matriz_jogo['a'] = Array(3);
+	matriz_jogo['b'] = Array(3);
+	matriz_jogo['c'] = Array(3);
 
-matriz_jogo['a'][1] = 0;
-matriz_jogo['a'][2] = 0;
-matriz_jogo['a'][3] = 0;
+	matriz_jogo['a'][1] = 0;
+	matriz_jogo['a'][2] = 0;
+	matriz_jogo['a'][3] = 0;
 
-matriz_jogo['b'][1] = 0;
-matriz_jogo['b'][2] = 0;
-matriz_jogo['b'][3] = 0;
+	matriz_jogo['b'][1] = 0;
+	matriz_jogo['b'][2] = 0;
+	matriz_jogo['b'][3] = 0;
 
-matriz_jogo['c'][1] = 0;
-matriz_jogo['c'][2] = 0;
-matriz_jogo['c'][3] = 0;
+	matriz_jogo['c'][1] = 0;
+	matriz_jogo['c'][2] = 0;
+	matriz_jogo['c'][3] = 0;
+}
+iniciaJogo();
 
 $(document).ready( function(){
-
-
 	$('#btn_iniciar_jogo').click( function(){
 		// Valida a digitação do apelido dos jogadores
 		//.val() vai ver o que está escrito no campo e vai pegar o valor
@@ -33,7 +37,7 @@ $(document).ready( function(){
 			alert("Apelido do jogador 2	não foi preenchido");
 			return false;
 		}
-		
+
 		// Exibir os apelidos nas imagens lado a lado com o jogo da velha
 		$('#nome_jogador_1').html($('#entrada_apelido_jogador_1').val());
 		$('#nome_jogador_2').html($('#entrada_apelido_jogador_2').val());
@@ -147,9 +151,16 @@ $(document).ready( function(){
 	}
 
 	$('#recarregar').click( function(){
-		reinicia_pagina();
+		iniciaJogo();
+
+		$('.jogada').css('background-image', 'none');
+		$('.jogada').click( function(){
+			var id_campo_clicado = this.id; //this faz referencia ao elemento do contexo do click
+			$('#'+id_campo_clicado).off();
+			jogada(id_campo_clicado);
+		});
 	});
 
 });
 
-// Como reescrever meu html com o JavaScript? Função que reescreva o meu html cada vez que for chamada 
+// Como reescrever meu html com o JavaScript? Função que reescreva o meu html cada vez que for chamada
