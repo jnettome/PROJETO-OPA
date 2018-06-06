@@ -122,13 +122,7 @@ $(document).ready( function(){
 		if(rodada > 9 && deu_velha == true) {
         	alert('Xiiiii, deu velha');
         	$('.jogada').off();
-        	reinicia_pagina();
     	}
-	}
-
-	// Faz a página reiniciar
-	function reinicia_pagina(){
-		location.reload(true);
 	}
 
 	function ganhador(pontos){
@@ -137,15 +131,25 @@ $(document).ready( function(){
 			alert(jogada_1 + " é o vencedor");
 			$('.jogada').off();
 			deu_velha = false;
-			reinicia_pagina();
 		}
 		else if(pontos == 3){
 			var jogada_2 = $('#entrada_apelido_jogador_2').val();
 			alert(jogada_2 + " é o vencedor");
 			$('.jogada').off();
 			deu_velha = false;
-			reinicia_pagina();
 		}
 	}
 
+
+	// Faz a página reiniciar
+	function reinicia_pagina(){
+		location.reload(true);
+	}
+
+	$('#recarregar').click( function(){
+		reinicia_pagina();
+	});
+
 });
+
+// Como reescrever meu html com o JavaScript? Função que reescreva o meu html cada vez que for chamada 

@@ -59,7 +59,7 @@ div#btn a:hover{
 
 .cd-timeline h2{
 	font-size: 5em;
-	color: #9BB5C2;
+	color: #7D96A6;/*#9BB5C2*/
 	text-align: center;
 	font-family: 'Nunito Sans', sans-serif;
 }
@@ -80,7 +80,7 @@ div#btn a:hover{
   left: 18px;
   height: 100%;
   width: 4px;
-  background-color: #9BB5C2;
+  background-color: #7D96A6;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -127,7 +127,7 @@ div#btn a:hover{
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #9BB5C2;
+  background-color: #7D96A6;
 }
 
 @media only screen and (min-width: 1170px) {
@@ -249,7 +249,7 @@ div#btn a:hover{
   .cd-timeline__date {
     position: absolute;
     width: 100%;
-    left: 122%;
+    left: 120%;
     top: -5px;
     font-size: 1.6rem;
   }
@@ -268,7 +268,7 @@ div#btn a:hover{
   }
   .cd-timeline__block:nth-child(even) .cd-timeline__date {
     left: auto;
-    right: 122%;
+    right: 120%;
     text-align: right;
   }
   .cd-timeline__content.cd-timeline__content--bounce-in {
